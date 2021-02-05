@@ -6,7 +6,7 @@
         "iconSmall": "images/iconSmall.png",
         "category": "message"
     },
-    "type": "RESTDECISION",
+    "type": "REST",
     "lang": {
         "en-US": {
             "name": "Template",
