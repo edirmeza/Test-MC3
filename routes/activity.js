@@ -82,6 +82,7 @@ exports.execute = function (req, res) {
     data.message = "Hello World";
     xhttp.open("POST", "https://d4cb5966-31f2-46b3-ae8f-92ad917d68b7.mock.pstmn.io/test-mc-ca", true);
     xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhttp.send(data);
     console.log("Executing");
     // example on how to decode JWT
