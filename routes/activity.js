@@ -72,24 +72,8 @@ exports.save = function (req, res) {
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function (req, res) {
-    console.log("body: " + util.inspect(req.body));
-    console.log("headers: " + req.headers);
-    console.log("trailers: " + req.trailers);
-    console.log("method: " + req.method);
-    console.log("url: " + req.url);
-    console.log("params: " + util.inspect(req.params));
-    console.log("query: " + util.inspect(req.query));
-    console.log("route: " + req.route);
-    console.log("cookies: " + req.cookies);
-    console.log("ip: " + req.ip);
-    console.log("path: " + req.path);
-    console.log("host: " + req.host);
-    console.log("fresh: " + req.fresh);
-    console.log("stale: " + req.stale);
-    console.log("protocol: " + req.protocol);
-    console.log("secure: " + req.secure);
-    console.log("originalUrl: " + req.originalUrl);
-    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    
+    /*var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
          if (this.readyState == 4 && this.status == 200) {
@@ -101,7 +85,7 @@ exports.execute = function (req, res) {
     xhttp.open("POST", "https://d4cb5966-31f2-46b3-ae8f-92ad917d68b7.mock.pstmn.io/test-mc-ca", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
-    xhttp.send(JSON.stringify(data));
+    xhttp.send(JSON.stringify(data));*/
     console.log("Executing");
     // example on how to decode JWT
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -111,7 +95,7 @@ exports.execute = function (req, res) {
             console.error(err);
             return res.status(401).end();
         }
-    
+        console.log(JSON.stringify(decoded));
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
             // decoded in arguments
@@ -119,7 +103,7 @@ exports.execute = function (req, res) {
             
             logData(req);
             console.log("Sending");
-            console.log(req);
+            console.log(decodedArgs);
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
