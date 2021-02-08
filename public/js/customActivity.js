@@ -76,6 +76,10 @@ define([
         payload['arguments'].execute.url = "https://test-app-2021-04-02.herokuapp.com/execute";
         payload['schema'].arguments.execute.inArguments = [{"emailAddress": {"dataType": "Email","isNullable": false,"direction": "in"   }}];
         payload['schema'].arguments.execute.outArguments = [];
+        payload['configurationArguments'].publish.url = "https://test-app-2021-04-02.herokuapp.com/publish";
+        payload['configurationArguments'].save.url = "https://test-app-2021-04-02.herokuapp.com/save";
+        payload['configurationArguments'].stop.url = "https://test-app-2021-04-02.herokuapp.com/stop";
+        payload['configurationArguments'].validate.url = "https://test-app-2021-04-02.herokuapp.com/validate";
         payload['metaData'].isConfigured = true;
 
         console.log(payload);
