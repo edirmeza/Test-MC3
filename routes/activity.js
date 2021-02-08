@@ -1,4 +1,5 @@
 'use strict';
+var XMLHttpRequest = require('./lib/XMLHttpRequest');
 var util = require('util');
 
 // Deps
@@ -6,7 +7,7 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
-//var XMLHttpRequest    = require('./lib/XMLHttpRequest');
+//
 exports.logExecuteData = [];
 
 function logData(req) {
