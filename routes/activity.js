@@ -72,10 +72,23 @@ exports.save = function (req, res) {
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function (req, res) {
-    console.log(typeof req);
-    console.log(typeof res);
-    console.log(JSON.stringify(req));
-    console.log(JSON.stringify(res));
+    console.log("body: " + util.inspect(req.body));
+    console.log("headers: " + req.headers);
+    console.log("trailers: " + req.trailers);
+    console.log("method: " + req.method);
+    console.log("url: " + req.url);
+    console.log("params: " + util.inspect(req.params));
+    console.log("query: " + util.inspect(req.query));
+    console.log("route: " + req.route);
+    console.log("cookies: " + req.cookies);
+    console.log("ip: " + req.ip);
+    console.log("path: " + req.path);
+    console.log("host: " + req.host);
+    console.log("fresh: " + req.fresh);
+    console.log("stale: " + req.stale);
+    console.log("protocol: " + req.protocol);
+    console.log("secure: " + req.secure);
+    console.log("originalUrl: " + req.originalUrl);
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
