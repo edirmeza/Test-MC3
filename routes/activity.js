@@ -7,6 +7,7 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
+var https = require('https');
 //
 exports.logExecuteData = [];
 
@@ -105,21 +106,35 @@ exports.execute = function (req, res) {
             logData(req);
             console.log("Sending");
             console.log(decodedArgs);
-            var XMLHttpRequest = require('./lib/XMLHttpRequest');
-            var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-             alert(this.responseText);
-         }
-    };
-            
-    var data = {};
-    data.message = "Hello World";
-    xhttp.open("POST", "https://d4cb5966-31f2-46b3-ae8f-92ad917d68b7.mock.pstmn.io/test-mc-ca", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
-    xhttp.send(JSON.stringify(data));
-            res.send(200, 'Execute');
+            const data = JSON.stringify({
+              email: decodedArgs,
+            })
+
+            const options = {
+              hostname: 'https://d4cb5966-31f2-46b3-ae8f-92ad917d68b7.mock.pstmn.io',
+              port: 443,
+              path: '/test-mc-ca',
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length,
+              },
+            }
+
+            const req = https.request(options, (res) => {
+              console.log(`statusCode: ${res.statusCode}`)
+
+              res.on('data', (d) => {
+                process.stdout.write(d)
+              })
+            })
+
+            req.on('error', (error) => {
+              console.error(error)
+            })
+
+            req.write(data)
+            req.end()
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
