@@ -71,7 +71,7 @@ define([
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.KAVAK_Demo.email}}"
+            "emailAddress": '{{Contact.Attribute."KAVAK_Demo"."email"}}'
         }];
         payload['arguments'].execute.url = "https://test-app-2021-04-02.herokuapp.com/execute";
         payload['schema'].arguments.execute.inArguments = [{"emailAddress": {"dataType": "Email","isNullable": false,"direction": "in"   }}];
