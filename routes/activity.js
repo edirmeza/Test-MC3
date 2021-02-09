@@ -121,25 +121,26 @@ exports.execute = function (req, res) {
               },
             }
 
-            const req = https.request(options, (res) => {
+            const requ = https.request(options, (resp) => {
               console.log(`statusCode: ${res.statusCode}`)
 
-              res.on('data', (d) => {
+              resp.on('data', (d) => {
                 process.stdout.write(d)
               })
             })
 
-            req.on('error', (error) => {
+            requ.on('error', (error) => {
               console.error(error)
             })
 
-            req.write(data)
-            req.end()
+            requ.write(data)
+            requ.end()
         } else {
             console.error('inArguments invalid.');
-            return res.status(400).end();
+            return resp.status(400).end();
         }
     });
+    console.log(JSON.stringify(resp.body));
 };
 
 
