@@ -1,5 +1,6 @@
 'use strict';
 //
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var util = require('util');
 
 // Deps
