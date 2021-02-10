@@ -5,7 +5,6 @@ var util = require('util');
 // Deps
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
-const XMLHttpRequest = require(Path.join(__dirname, '..', 'lib', 'XMLHttpRequest.js'));
 var util = require('util');
 var http = require('https');
 //
@@ -106,8 +105,7 @@ exports.execute = function (req, res) {
             logData(req);
             console.log("Sending");
             console.log(decodedArgs);
-           
-            var xhttp = XMLHttpRequest;
+           var xhttp = require("xmlhttprequest").XMLHttpRequest;
     xhttp.onreadystatechange = function() {
          if (this.readyState == 4 && this.status == 200) {
              alert(this.responseText);
