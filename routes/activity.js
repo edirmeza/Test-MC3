@@ -106,7 +106,7 @@ exports.execute = function (req, res) {
             logData(req);
             console.log("Sending");
             console.log(decodedArgs);
-           var xhttp = require("xmlhttprequest").XMLHttpRequest;
+           var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
          if (this.readyState == 4 && this.status == 200) {
              alert(this.responseText);
